@@ -9,10 +9,10 @@ output_file('thor2.html')
 data = pd.read_csv('thor_wwii.csv')
 data['MSNDATE'] = pd.to_datetime(data['MSNDATE'], format='%m/%d/%Y')
 dataGrouped = data.groupby('MSNDATE')[['TOTAL_TONS', 'TONS_FRAG','TONS_IC','TONS_HE']].sum()
-#print(dataGrouped)
-
 dataSource = ColumnDataSource(dataGrouped)
 p = figure(x_axis_type='datetime')
-p.line(x='MSNDATE', y='TOTAL_TONS', source=dataSource, legend_label='complet_explotion', line_width=2)
+p.line(x='MSNDATE', y='TOTAL_TONS', source=dataSource, legend_label='complet_explotion', line_width=2, color='blue')
+p.line(x='MSNDATE', y='TONS_IC', source=dataSource, legend_label='complet_explotion', line_width=2, color='green')
+p.line(x='MSNDATE', y='TONS_HE', source=dataSource, legend_label='complet_explotion', line_width=2, color='red')
 
 show(p)
